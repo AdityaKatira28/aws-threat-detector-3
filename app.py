@@ -809,37 +809,5 @@ if st.button("🎲 Generate Sample Data for Visualization", type="primary"):
             threat_rate = len(viz_df[viz_df['threat_label'] == 1]) / len(viz_df) * 100
             st.markdown(f'<div class="material-card"><div class="material-metric-label">Threat Rate</div><div class="material-metric-value">{threat_rate:.1f}%</div></div>', unsafe_allow_html=True)
 
-# --- MODEL INSIGHTS SECTION ---
-st.markdown('<h2 class="section-header">🎯 Model Performance & Insights</h2>', unsafe_allow_html=True)
 
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown('<div class="info-card">', unsafe_allow_html=True)
-    st.write("**Model Type:** Random Forest Classifier")
-    st.write("**Features:** 22 engineered features")
-    st.write("**Training Data:** Synthetic CloudTrail events")
-    st.write("**Status:** Ready for Analysis")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with col2:
-    # Feature importance chart
-    st.markdown('<div class="chart-container">', unsafe_allow_html=True)
-    st.subheader("🎯 Feature Importance")
-    
-    # Sort by importance
-    feature_importance_sorted = feature_importance_df.sort_values('importance', ascending=True).tail(10)
-    
-    fig = px.bar(
-        feature_importance_sorted, 
-        x='importance', 
-        y='feature',
-        orientation='h',
-        title="Top 10 Most Important Features",
-        color='importance',
-        color_continuous_scale=['#D3D3D3', '#003087']
-    )
-    fig.update_layout(height=400, showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
