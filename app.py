@@ -266,6 +266,19 @@ st.markdown("""
     /* Import Arial font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     
+    /* Material Design Primary Color System */
+    :root {
+        /* Primary Color Layers */
+        --primary-100: #e3f2fd;    /* Light layer - backgrounds, surfaces */
+        --primary-500: #003087;    /* Base layer - main elements, focus states */
+        --primary-900: #001a4d;    /* Dark layer - text, borders, emphasis */
+        
+        /* Surface colors for layering */
+        --surface-primary-10: rgba(0, 48, 135, 0.04);
+        --surface-primary-20: rgba(0, 48, 135, 0.08);
+        --surface-primary-30: rgba(0, 48, 135, 0.12);
+    }
+    
     body { 
         font-family: 'Arial', sans-serif; 
         color: #262730; 
@@ -282,15 +295,15 @@ st.markdown("""
         display: none !important;
     }
     
-    /* Main header styling */
+    /* Main header styling - using primary-500 and primary-900 */
     .main-header {
-        background: linear-gradient(135deg, #003087 0%, #002669 100%);
+        background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-900) 100%);
         padding: 1.5rem 2rem;
         border-radius: 12px;
         margin-bottom: 2rem;
         text-align: center;
         color: white;
-        box-shadow: 0 4px 8px rgba(0, 48, 135, 0.15);
+        box-shadow: 0 4px 8px var(--surface-primary-20);
     }
     
     .main-header h1 {
@@ -307,7 +320,7 @@ st.markdown("""
         margin: 0;
     }
     
-    /* Material-like card styling */
+    /* Material-like card styling - using primary-100 for subtle accents */
     .material-card {
         background-color: #FFFFFF;
         border-radius: 12px;
@@ -315,19 +328,20 @@ st.markdown("""
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         margin-bottom: 25px;
         transition: all 0.3s ease;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--primary-100);
     }
     
     .material-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px var(--surface-primary-20);
+        border-color: var(--primary-500);
     }
     
-    /* Metric styling */
+    /* Metric styling - using primary-500 for values */
     .material-metric-value { 
         font-size: 2.5em; 
         font-weight: 700; 
-        color: #003087; 
+        color: var(--primary-500); 
         margin-top: 5px; 
     }
     
@@ -359,10 +373,10 @@ st.markdown("""
         background: linear-gradient(145deg, #f8fff8, #d4edda);
     }
     
-    /* Upload section styling */
+    /* Upload section styling - using primary-500 and primary-100 */
     .upload-section {
         background-color: #FFFFFF;
-        border: 2px dashed #003087;
+        border: 2px dashed var(--primary-500);
         border-radius: 12px;
         padding: 2rem;
         text-align: center;
@@ -371,13 +385,13 @@ st.markdown("""
     }
     
     .upload-section:hover {
-        border-color: #002669;
-        background-color: #f8f9fa;
+        border-color: var(--primary-900);
+        background-color: var(--primary-100);
     }
     
-    /* Button styling with accessibility */
+    /* Button styling with three-layer system */
     .stButton > button {
-        background-color: #003087;
+        background-color: var(--primary-500);
         color: white;
         border-radius: 50px;
         padding: 12px 24px;
@@ -389,42 +403,49 @@ st.markdown("""
     }
     
     .stButton > button:hover {
-        background-color: #002669;
+        background-color: var(--primary-900);
         transform: scale(1.05);
+        box-shadow: 0 4px 12px var(--surface-primary-30);
     }
     
     .stButton > button:active {
-        border: 2px solid #FFFFFF;
+        border: 2px solid var(--primary-100);
+        background-color: var(--primary-900);
     }
     
-    /* Chart container styling */
+    /* Chart container styling - subtle primary accent */
     .chart-container {
         background-color: #FFFFFF;
         border-radius: 12px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
         padding: 20px;
         margin-bottom: 25px;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--primary-100);
     }
     
-    /* Section headers */
+    /* Section headers - using primary-500 and primary-900 */
     .section-header {
-        color: #003087;
+        color: var(--primary-500);
         font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid #003087;
+        border-bottom: 2px solid var(--primary-500);
     }
     
-    /* Info cards */
+    /* Info cards - using primary-500 accent */
     .info-card {
         background-color: #FFFFFF;
         border-radius: 12px;
         padding: 1.5rem;
-        border-left: 5px solid #003087;
+        border-left: 5px solid var(--primary-500);
         margin: 1rem 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .info-card:hover {
+        background-color: var(--primary-100);
+        border-left-color: var(--primary-900);
     }
     
     /* Success message styling */
@@ -434,6 +455,32 @@ st.markdown("""
         border-radius: 12px;
         padding: 1rem;
         margin: 1rem 0;
+    }
+    
+    /* Additional Material Design states using the three layers */
+    .primary-surface-variant {
+        background-color: var(--primary-100);
+        color: var(--primary-900);
+    }
+    
+    .primary-outline {
+        border: 1px solid var(--primary-500);
+        color: var(--primary-500);
+    }
+    
+    .primary-text {
+        color: var(--primary-500);
+    }
+    
+    .primary-text-emphasis {
+        color: var(--primary-900);
+    }
+    
+    /* Focus states using primary layers */
+    .material-card:focus-within,
+    .upload-section:focus-within {
+        outline: 2px solid var(--primary-500);
+        outline-offset: 2px;
     }
     
     /* Responsive design */
