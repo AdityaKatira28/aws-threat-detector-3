@@ -269,9 +269,9 @@ st.markdown("""
     /* Material Design Primary Color System */
     :root {
         /* Primary Color Layers */
-        --primary-100: #001a4d;    /* Dark layer - text, borders, emphasis */
+        --primary-100: #e3f2fd;    /* Light layer - backgrounds, surfaces */
         --primary-500: #003087;    /* Base layer - main elements, focus states */
-        --primary-900: #e3f2fd;    /* Light layer - backgrounds, surfaces */
+        --primary-900: #001a4d;    /* Dark layer - text, borders, emphasis */
         
         /* Surface colors for layering */
         --surface-primary-10: rgba(0, 48, 135, 0.04);
