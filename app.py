@@ -261,61 +261,258 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-st.markdown(
-    """
-    <style>
-      /* Material Design Primary Color System - hybrid */
-      :root {
-        /* Core primary tones */
-        --primary-light: #3354b3;
-        --primary-main:  #003087;
-        --primary-dark:  #001a4d;
-
-        /* Secondary surface tints */
+st.markdown("""
+<style>
+    /* Import Arial font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    /* Material Design Primary Color System */
+    :root {
+        /* Primary Color Layers */
+        --primary-100: #e3f2fd;    /* Light layer - backgrounds, surfaces */
+        --primary-500: #003087;    /* Base layer - main elements, focus states */
+        --primary-900: #001a4d;    /* Dark layer - text, borders, emphasis */
+        
+        /* Surface colors for layering */
         --surface-primary-10: rgba(0, 48, 135, 0.04);
         --surface-primary-20: rgba(0, 48, 135, 0.08);
-
-        /* Backgrounds */
-        --background-primary: #fafbff;
-        --surface-container: #ffffff;
-        --surface-container-low: #f5f7ff;
-      }
-      /* Import font */
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-      body, .main {
-        font-family: 'Arial', sans-serif;
-        color: #262730;
+        --surface-primary-30: rgba(0, 48, 135, 0.12);
+        
+        /* Background system */
+        --background-primary: #f0f4ff;    /* More visible primary tint */
+        --surface-container: #ffffff;     /* Card surfaces */
+        --surface-container-low: #f8faff; /* Subtle container surfaces */
+    }
+    
+    body { 
+        font-family: 'Arial', sans-serif; 
+        color: #262730; 
         background-color: var(--background-primary);
-      }
-      /* Hide sidebar */
-      .css-1d391kg, .css-1lcbmhc, .css-1outpf7,
-      section[data-testid="stSidebar"] {display:none!important;}
-
-      /* Main header */
-      .main-header {background:linear-gradient(135deg, var(--primary-main), var(--primary-dark)); padding:1.5rem 2rem; border-radius:12px; margin-bottom:2rem; text-align:center; color:#fff; box-shadow:0 4px 8px var(--surface-primary-20);}  
-      .main-header h1 {font-size:2.5rem; font-weight:800; margin-bottom:0.5rem;}  
-      .main-header p  {font-size:1.1rem; opacity:0.9; font-weight:400;}
-
-      /* Material card */
-      .material-card {background:var(--surface-container); border-radius:12px; padding:25px; margin-bottom:25px; border:1px solid var(--surface-primary-10); box-shadow:0 4px 8px rgba(0,0,0,0.05); transition:transform .3s, box-shadow .3s;}      
-      .material-card:hover {transform:translateY(-5px); box-shadow:0 8px 16px var(--surface-primary-20); border-color:var(--primary-main); background:var(--surface-container-low);}  
-
-      /* Buttons */
-      .stButton > button {background:var(--primary-main); color:#fff; border-radius:50px; padding:12px 24px; font-size:16px; border:2px solid transparent; font-weight:600; transition:background .3s, transform .3s;}      
-      .stButton > button:hover  {background:var(--primary-dark); transform:scale(1.05); box-shadow:0 4px 12px var(--surface-primary-20);}  
-      .stButton > button:active {background:var(--primary-dark); border:2px solid var(--surface-primary-10);}
-
-      /* Other components... */
-      .upload-section{background:var(--surface-container); border:2px dashed var(--primary-main); border-radius:12px; padding:2rem; text-align:center; margin:1rem 0; transition:border-color .3s, background .3s;}      
-      .upload-section:hover {border-color:var(--primary-dark); background:var(--surface-primary-10);}  
-
-      /* Hide Streamlit UI elements */
-      #MainMenu, footer, header {visibility:hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+    }
+    
+    .main {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--background-primary);
+    }
+    
+    /* Hide sidebar completely */
+    .css-1d391kg, .css-1lcbmhc, .css-1outpf7, section[data-testid="stSidebar"] {
+        display: none !important;
+    }
+    
+    /* Main header styling - using primary-500 and primary-900 */
+    .main-header {
+        background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-900) 100%);
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 8px var(--surface-primary-20);
+    }
+    
+    .main-header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        color: white;
+    }
+    
+    .main-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        font-weight: 400;
+        margin: 0;
+    }
+    
+    /* Material-like card styling - using primary-100 for subtle accents */
+    .material-card {
+        background-color: var(--surface-container);
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        margin-bottom: 25px;
+        transition: all 0.3s ease;
+        border: 1px solid var(--primary-100);
+    }
+    
+    .material-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px var(--surface-primary-20);
+        border-color: var(--primary-500);
+        background-color: var(--surface-container-low);
+    }
+    
+    /* Metric styling - using primary-500 for values */
+    .material-metric-value { 
+        font-size: 2.5em; 
+        font-weight: 700; 
+        color: var(--primary-500); 
+        margin-top: 5px; 
+    }
+    
+    .material-metric-label { 
+        font-size: 0.9em; 
+        color: #6C757D; 
+        text-transform: uppercase; 
+        letter-spacing: 0.5px; 
+    }
+    
+    /* Threat level specific styling */
+    .threat-critical {
+        border-left: 5px solid #dc3545;
+        background: linear-gradient(145deg, #fff5f5, #ffe6e6);
+    }
+    
+    .threat-high {
+        border-left: 5px solid #fd7e14;
+        background: linear-gradient(145deg, #fff8f0, #ffebcc);
+    }
+    
+    .threat-medium {
+        border-left: 5px solid #ffc107;
+        background: linear-gradient(145deg, #fffbf0, #fff3cd);
+    }
+    
+    .threat-low {
+        border-left: 5px solid #28a745;
+        background: linear-gradient(145deg, #f8fff8, #d4edda);
+    }
+    
+    /* Upload section styling - using primary-500 and primary-100 */
+    .upload-section {
+        background-color: var(--surface-container);
+        border: 2px dashed var(--primary-500);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        margin: 1rem 0;
+        transition: all 0.3s ease;
+    }
+    
+    .upload-section:hover {
+        border-color: var(--primary-900);
+        background-color: var(--surface-container-low);
+    }
+    
+    /* Button styling with three-layer system */
+    .stButton > button {
+        background-color: var(--primary-500);
+        color: white;
+        border-radius: 50px;
+        padding: 12px 24px;
+        font-size: 16px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    .stButton > button:hover {
+        background-color: var(--primary-900);
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px var(--surface-primary-30);
+    }
+    
+    .stButton > button:active {
+        border: 2px solid var(--primary-100);
+        background-color: var(--primary-900);
+    }
+    
+    /* Chart container styling - subtle primary accent */
+    .chart-container {
+        background-color: var(--surface-container);
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        padding: 20px;
+        margin-bottom: 25px;
+        border: 1px solid var(--primary-100);
+    }
+    
+    /* Section headers - using primary-500 and primary-900 */
+    .section-header {
+        color: var(--primary-500);
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-500);
+    }
+    
+    /* Info cards - using primary-500 accent */
+    .info-card {
+        background-color: var(--surface-container);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border-left: 5px solid var(--primary-500);
+        margin: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .info-card:hover {
+        background-color: var(--surface-container-low);
+        border-left-color: var(--primary-900);
+    }
+    
+    /* Success message styling */
+    .success-message {
+        background: linear-gradient(145deg, #d4edda, #ffffff);
+        border: 2px solid #28a745;
+        border-radius: 12px;
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    /* Additional Material Design states using the three layers */
+    .primary-surface-variant {
+        background-color: var(--primary-100);
+        color: var(--primary-900);
+    }
+    
+    .primary-outline {
+        border: 1px solid var(--primary-500);
+        color: var(--primary-500);
+    }
+    
+    .primary-text {
+        color: var(--primary-500);
+    }
+    
+    .primary-text-emphasis {
+        color: var(--primary-900);
+    }
+    
+    /* Focus states using primary layers */
+    .material-card:focus-within,
+    .upload-section:focus-within {
+        outline: 2px solid var(--primary-500);
+        outline-offset: 2px;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 600px) {
+        .material-card {
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .material-metric-value { 
+            font-size: 2em; 
+        }
+        .stButton > button { 
+            padding: 10px 20px; 
+            font-size: 14px; 
+        }
+        .main-header h1 {
+            font-size: 2rem;
+        }
+    }
+    
+    /* Hide Streamlit elements */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
 
 
 # --- MODEL LOADING ---
