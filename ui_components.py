@@ -6,110 +6,68 @@ from datetime import datetime
 class UIComponents:
     """UI components and styling for the Streamlit app"""
     
-@staticmethod
-def load_custom_css():
-    """Load custom CSS styling following Material 3 Expressive principles"""
-    st.markdown("""
-    <style>
-        /* Import Arial font */
-        body {
-            font-family: 'Arial', sans-serif;
-            color: #262730;
-        }
-
-        /* Main Header */
-        .main-header {
-            background: linear-gradient(90deg, #003087, #0056b3);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        /* Metric Card */
-        .metric-card {
-            background: #ffffff;
-            padding: 1rem;
-            border-radius: 12px;
-            border-left: 4px solid #003087;
-            margin: 0.5rem 0;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Threat Level Variants */
-        .threat-high {
-            border-left-color: #dc3545 !important;
-            background: #fff5f5;
-        }
-        .threat-medium {
-            border-left-color: #ffc107 !important;
-            background: #fffbf0;
-        }
-        .threat-low {
-            border-left-color: #28a745 !important;
-            background: #f8fff8;
-        }
-
-        /* File Upload Section */
-        .upload-section {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 1rem 0;
-            border: 2px dashed #003087;
-        }
-
-        /* Buttons */
-        .stButton > button {
-            background-color: #003087;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .stButton > button:hover {
-            background-color: #002669;
-            transform: scale(1.05);
-        }
-
-        /* Sidebar */
-        .sidebar .sidebar-content {
-            background-color: #D3D3D3;
-            padding: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
+    @staticmethod
+    def setup_page_config():
+        """Configure Streamlit page settings"""
+        st.set_page_config(
+            page_title="AWS Threat Detection AI Demo",
+            page_icon="🛡️",
+            layout="wide",
+            initial_sidebar_state="expanded"
+        )
+    
+    @staticmethod
+    def load_custom_css():
+        """Load custom CSS styling"""
+        st.markdown("""
+        <style>
             .main-header {
+                background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
                 padding: 1rem;
-                font-size: 0.9em;
+                border-radius: 10px;
+                margin-bottom: 2rem;
+                text-align: center;
+                color: white;
             }
-
             .metric-card {
-                padding: 0.8rem;
-                border-radius: 8px;
+                background: #f8f9fa;
+                padding: 1rem;
+                border-radius: 10px;
+                border-left: 4px solid #007bff;
+                margin: 0.5rem 0;
             }
-
+            .threat-high {
+                border-left-color: #dc3545 !important;
+                background: #fff5f5;
+            }
+            .threat-medium {
+                border-left-color: #ffc107 !important;
+                background: #fffbf0;
+            }
+            .threat-low {
+                border-left-color: #28a745 !important;
+                background: #f8fff8;
+            }
+            .upload-section {
+                background: #f8f9fa;
+                padding: 2rem;
+                border-radius: 10px;
+                margin: 1rem 0;
+                border: 2px dashed #007bff;
+            }
             .stButton > button {
-                padding: 8px 16px;
-                font-size: 12px;
+                background: linear-gradient(90deg, #007bff, #0056b3);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 0.5rem 1rem;
+                font-weight: bold;
             }
-        }
-    </style>
-    """, unsafe_allow_html=True)
+            .sidebar .sidebar-content {
+                background: #f8f9fa;
+            }
+        </style>
+        """, unsafe_allow_html=True)
     
     @staticmethod
     def render_header():
