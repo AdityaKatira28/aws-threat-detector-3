@@ -261,31 +261,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-import streamlit as st
-
-
+st.markdown("""
 <style>
     /* Import Arial font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     
-    /* Material Design primary color palette */
-    :root {
-        --primary-dark: #001F5B; /* Primary Dark (700) */
-        --primary-medium: #003087; /* Primary Medium (500) */
-        --primary-light: #D9E2F3; /* Primary Light (300) */
-        --on-primary: #FFFFFF; /* Text color on primary backgrounds */
-        --secondary: #F0F0F0; /* Secondary/Surface color */
-    }
-    
     body { 
         font-family: 'Arial', sans-serif; 
-        color: var(--on-primary); 
-        background-color: var(--primary-medium);
+        color: #262730; 
+        background-color: #FFFFFF;
     }
     
     .main {
         font-family: 'Arial', sans-serif;
-        background-color: var(--primary-medium);
+        background-color: #FFFFFF;
     }
     
     /* Hide sidebar completely */
@@ -295,20 +284,20 @@ import streamlit as st
     
     /* Main header styling */
     .main-header {
-        background: linear-gradient(135deg, var(--primary-light) 0%, var(--on-primary) 100%);
+        background: linear-gradient(135deg, #003087 0%, #002669 100%);
         padding: 1.5rem 2rem;
         border-radius: 12px;
         margin-bottom: 2rem;
         text-align: center;
-        color: var(--primary-medium);
-        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 48, 135, 0.15);
     }
     
     .main-header h1 {
         font-size: 2.5rem;
         font-weight: 800;
         margin-bottom: 0.5rem;
-        color: var(--primary-medium);
+        color: white;
     }
     
     .main-header p {
@@ -320,31 +309,31 @@ import streamlit as st
     
     /* Material-like card styling */
     .material-card {
-        background-color: var(--primary-dark);
+        background-color: #FFFFFF;
         border-radius: 12px;
         padding: 25px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         margin-bottom: 25px;
         transition: all 0.3s ease;
-        border: 1px solid #002669;
+        border: 1px solid #f0f0f0;
     }
     
     .material-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
     
     /* Metric styling */
     .material-metric-value { 
         font-size: 2.5em; 
         font-weight: 700; 
-        color: var(--on-primary); 
+        color: #003087; 
         margin-top: 5px; 
     }
     
     .material-metric-label { 
         font-size: 0.9em; 
-        color: var(--primary-light); 
+        color: #6C757D; 
         text-transform: uppercase; 
         letter-spacing: 0.5px; 
     }
@@ -352,28 +341,28 @@ import streamlit as st
     /* Threat level specific styling */
     .threat-critical {
         border-left: 5px solid #dc3545;
-        background: linear-gradient(145deg, #e6e6ff, #f0f0ff);
+        background: linear-gradient(145deg, #fff5f5, #ffe6e6);
     }
     
     .threat-high {
         border-left: 5px solid #fd7e14;
-        background: linear-gradient(145deg, #f0f8ff, #f8f8ff);
+        background: linear-gradient(145deg, #fff8f0, #ffebcc);
     }
     
     .threat-medium {
         border-left: 5px solid #ffc107;
-        background: linear-gradient(145deg, #fffff0, #ffffe0);
+        background: linear-gradient(145deg, #fffbf0, #fff3cd);
     }
     
     .threat-low {
         border-left: 5px solid #28a745;
-        background: linear-gradient(145deg, #f0fff0, #e0ffe0);
+        background: linear-gradient(145deg, #f8fff8, #d4edda);
     }
     
     /* Upload section styling */
     .upload-section {
-        background-color: var(--primary-dark);
-        border: 2px dashed var(--on-primary);
+        background-color: #FFFFFF;
+        border: 2px dashed #003087;
         border-radius: 12px;
         padding: 2rem;
         text-align: center;
@@ -382,14 +371,14 @@ import streamlit as st
     }
     
     .upload-section:hover {
-        border-color: var(--on-primary);
-        background-color: #002669;
+        border-color: #002669;
+        background-color: #f8f9fa;
     }
     
     /* Button styling with accessibility */
     .stButton > button {
-        background-color: var(--on-primary);
-        color: var(--primary-medium);
+        background-color: #003087;
+        color: white;
         border-radius: 50px;
         padding: 12px 24px;
         font-size: 16px;
@@ -400,47 +389,47 @@ import streamlit as st
     }
     
     .stButton > button:hover {
-        background-color: var(--primary-light);
+        background-color: #002669;
         transform: scale(1.05);
     }
     
     .stButton > button:active {
-        border: 2px solid var(--primary-medium);
+        border: 2px solid #FFFFFF;
     }
     
     /* Chart container styling */
     .chart-container {
-        background-color: var(--primary-dark);
+        background-color: #FFFFFF;
         border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
         padding: 20px;
         margin-bottom: 25px;
-        border: 1px solid #002669;
+        border: 1px solid #f0f0f0;
     }
     
     /* Section headers */
     .section-header {
-        color: var(--on-primary);
+        color: #003087;
         font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--on-primary);
+        border-bottom: 2px solid #003087;
     }
     
     /* Info cards */
     .info-card {
-        background-color: var(--primary-dark);
+        background-color: #FFFFFF;
         border-radius: 12px;
         padding: 1.5rem;
-        border-left: 5px solid var(--on-primary);
+        border-left: 5px solid #003087;
         margin: 1rem 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
     
     /* Success message styling */
     .success-message {
-        background: linear-gradient(145deg, #e0ffe0, #f0fff0);
+        background: linear-gradient(145deg, #d4edda, #ffffff);
         border: 2px solid #28a745;
         border-radius: 12px;
         padding: 1rem;
@@ -470,6 +459,7 @@ import streamlit as st
     footer {visibility: hidden;}
     header {visibility: hidden;}
 </style>
+""", unsafe_allow_html=True)
 
 # --- MODEL LOADING ---
 @st.cache_resource
