@@ -6,9 +6,9 @@ from datetime import datetime
 class UIComponents:
     """UI components and styling for the Streamlit app"""
     
-   @staticmethod
+@staticmethod
 def load_custom_css():
-    """Load custom CSS styling"""
+    """Load custom CSS styling following Material 3 Expressive principles"""
     st.markdown("""
     <style>
         /* Import Arial font */
@@ -16,104 +16,100 @@ def load_custom_css():
             font-family: 'Arial', sans-serif;
             color: #262730;
         }
-        /* Header styling */
+
+        /* Main Header */
         .main-header {
-            background: linear-gradient(90deg, #003087, #005BBB);
-            padding: 1rem;
-            border-radius: 10px;
+            background: linear-gradient(90deg, #003087, #0056b3);
+            padding: 1.5rem;
+            border-radius: 12px;
             margin-bottom: 2rem;
             text-align: center;
             color: white;
-        }
-        /* Metric card styling */
-        .metric-card {
-            background: #FFFFFF;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            margin: 0.5rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        .metric-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+        /* Metric Card */
+        .metric-card {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid #003087;
+            margin: 0.5rem 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
-        /* Risk classes */
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Threat Level Variants */
         .threat-high {
-            border-left: 4px solid #dc3545;
+            border-left-color: #dc3545 !important;
+            background: #fff5f5;
         }
         .threat-medium {
-            border-left: 4px solid #ffc107;
+            border-left-color: #ffc107 !important;
+            background: #fffbf0;
         }
         .threat-low {
-            border-left: 4px solid #28a745;
+            border-left-color: #28a745 !important;
+            background: #f8fff8;
         }
-        /* Metric text styling */
-        .metric-value {
-            color: #003087;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        .metric-label {
-            color: #6C757D;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        /* Headings */
-        h1 {
-            color: #003087;
-        }
-        h2, h3 {
-            color: #343A40;
-        }
-        /* Button styling */
-        .stButton > button {
-            background: linear-gradient(90deg, #003087, #005BBB);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .stButton > button:hover {
-            background: linear-gradient(90deg, #002669, #004085);
-            transform: scale(1.05);
-        }
-        /* Upload section */
+
+        /* File Upload Section */
         .upload-section {
             background: #f8f9fa;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 1rem 0;
-            border: 2px dashed #007bff;
+            border: 2px dashed #003087;
         }
+
+        /* Buttons */
+        .stButton > button {
+            background-color: #003087;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .stButton > button:hover {
+            background-color: #002669;
+            transform: scale(1.05);
+        }
+
         /* Sidebar */
-        .css-1d391kg {
+        .sidebar .sidebar-content {
             background-color: #D3D3D3;
+            padding: 1rem;
         }
-        /* Responsive design */
+
+        /* Responsive Design */
         @media (max-width: 600px) {
+            .main-header {
+                padding: 1rem;
+                font-size: 0.9em;
+            }
+
             .metric-card {
-                padding: 0.5rem;
+                padding: 0.8rem;
+                border-radius: 8px;
             }
-            .metric-value {
-                font-size: 1.2em;
-            }
+
             .stButton > button {
-                padding: 10px 20px;
-                font-size: 14px;
+                padding: 8px 16px;
+                font-size: 12px;
             }
         }
     </style>
     """, unsafe_allow_html=True)
-    
-    @staticmethod
-def render_metric_card(value, label, risk_class=""):
-    """Render a metric card"""
-    return f'<div class="metric-card {risk_class}"><h3 class="metric-value">{value}</h3><p class="metric-label">{label}</p></div>'
     
     @staticmethod
     def render_header():
