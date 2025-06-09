@@ -261,6 +261,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# --- MATERIAL 3 EXPRESSIVE STYLING ---
+st.markdown("""
 <style>
     /* Import Arial font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -268,12 +270,12 @@ st.set_page_config(
     body { 
         font-family: 'Arial', sans-serif; 
         color: #262730; 
-        background-color: #003087;
+        background-color: #FFFFFF;
     }
     
     .main {
         font-family: 'Arial', sans-serif;
-        background-color: #003087;
+        background-color: #FFFFFF;
     }
     
     /* Hide sidebar completely */
@@ -283,20 +285,20 @@ st.set_page_config(
     
     /* Main header styling */
     .main-header {
-        background: linear-gradient(135deg, #FFFFFF 0%, #D9E2F3 100%);
+        background: linear-gradient(135deg, #003087 0%, #002669 100%);
         padding: 1.5rem 2rem;
         border-radius: 12px;
         margin-bottom: 2rem;
         text-align: center;
-        color: #003087;
-        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 48, 135, 0.15);
     }
     
     .main-header h1 {
         font-size: 2.5rem;
         font-weight: 800;
         margin-bottom: 0.5rem;
-        color: #003087;
+        color: white;
     }
     
     .main-header p {
@@ -308,13 +310,13 @@ st.set_page_config(
     
     /* Material-like card styling */
     .material-card {
-        background-color: #003087;
+        background-color: #FFFFFF;
         border-radius: 12px;
         padding: 25px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         margin-bottom: 25px;
         transition: all 0.3s ease;
-        border: 1px solid #002669;
+        border: 1px solid #f0f0f0;
     }
     
     .material-card:hover {
@@ -326,7 +328,7 @@ st.set_page_config(
     .material-metric-value { 
         font-size: 2.5em; 
         font-weight: 700; 
-        color: #FFFFFF; 
+        color: #003087; 
         margin-top: 5px; 
     }
     
@@ -340,28 +342,28 @@ st.set_page_config(
     /* Threat level specific styling */
     .threat-critical {
         border-left: 5px solid #dc3545;
-        background: linear-gradient(145deg, #e6e6ff, #f5f5ff);
+        background: linear-gradient(145deg, #fff5f5, #ffe6e6);
     }
     
     .threat-high {
         border-left: 5px solid #fd7e14;
-        background: linear-gradient(145deg, #f0f8ff, #f8f8ff);
+        background: linear-gradient(145deg, #fff8f0, #ffebcc);
     }
     
     .threat-medium {
         border-left: 5px solid #ffc107;
-        background: linear-gradient(145deg, #fffff0, #ffffe0);
+        background: linear-gradient(145deg, #fffbf0, #fff3cd);
     }
     
     .threat-low {
         border-left: 5px solid #28a745;
-        background: linear-gradient(145deg, #f0fff0, #e0ffe0);
+        background: linear-gradient(145deg, #f8fff8, #d4edda);
     }
     
     /* Upload section styling */
     .upload-section {
-        background-color: #003087;
-        border: 2px dashed #FFFFFF;
+        background-color: #FFFFFF;
+        border: 2px dashed #003087;
         border-radius: 12px;
         padding: 2rem;
         text-align: center;
@@ -370,14 +372,14 @@ st.set_page_config(
     }
     
     .upload-section:hover {
-        border-color: #FFFFFF;
-        background-color: #002669;
+        border-color: #002669;
+        background-color: #f8f9fa;
     }
     
     /* Button styling with accessibility */
     .stButton > button {
-        background-color: #FFFFFF;
-        color: #003087;
+        background-color: #003087;
+        color: white;
         border-radius: 50px;
         padding: 12px 24px;
         font-size: 16px;
@@ -388,47 +390,47 @@ st.set_page_config(
     }
     
     .stButton > button:hover {
-        background-color: #D9E2F3;
+        background-color: #002669;
         transform: scale(1.05);
     }
     
     .stButton > button:active {
-        border: 2px solid #003087;
+        border: 2px solid #FFFFFF;
     }
     
     /* Chart container styling */
     .chart-container {
-        background-color: #003087;
+        background-color: #FFFFFF;
         border-radius: 12px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
         padding: 20px;
         margin-bottom: 25px;
-        border: 1px solid #002669;
+        border: 1px solid #f0f0f0;
     }
     
     /* Section headers */
     .section-header {
-        color: #FFFFFF;
+        color: #003087;
         font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid #FFFFFF;
+        border-bottom: 2px solid #003087;
     }
     
     /* Info cards */
     .info-card {
-        background-color: #003087;
+        background-color: #FFFFFF;
         border-radius: 12px;
         padding: 1.5rem;
-        border-left: 5px solid #FFFFFF;
+        border-left: 5px solid #003087;
         margin: 1rem 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
     
     /* Success message styling */
     .success-message {
-        background: linear-gradient(145deg, #e0ffe0, #f0fff0);
+        background: linear-gradient(145deg, #d4edda, #ffffff);
         border: 2px solid #28a745;
         border-radius: 12px;
         padding: 1rem;
@@ -458,6 +460,7 @@ st.set_page_config(
     footer {visibility: hidden;}
     header {visibility: hidden;}
 </style>
+""", unsafe_allow_html=True)
 
 # --- MODEL LOADING ---
 @st.cache_resource
