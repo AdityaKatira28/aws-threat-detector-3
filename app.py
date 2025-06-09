@@ -261,190 +261,61 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-<style>
-  /* Material Design Primary Color System - hybrid */
-  :root {
-    /* Core primary tones */
-    --primary-light: #3354b3;        /* Light tone */
-    --primary-main:  #003087;        /* Main tone */
-    --primary-dark:  #001a4d;        /* Dark tone */
-    
-    /* Secondary surface tints (optional) */
-    --surface-primary-10: rgba(0, 48, 135, 0.04);
-    --surface-primary-20: rgba(0, 48, 135, 0.08);
-    
-    /* Backgrounds and containers */
-    --background-primary: #fafbff;
-    --surface-container: #ffffff;
-    --surface-container-low: #f5f7ff;
-  }
+st.markdown(
+    """
+    <style>
+      /* Material Design Primary Color System - hybrid */
+      :root {
+        /* Core primary tones */
+        --primary-light: #3354b3;
+        --primary-main:  #003087;
+        --primary-dark:  #001a4d;
 
-  /* Import font */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        /* Secondary surface tints */
+        --surface-primary-10: rgba(0, 48, 135, 0.04);
+        --surface-primary-20: rgba(0, 48, 135, 0.08);
 
-  body, .main {
-    font-family: 'Arial', sans-serif;
-    color: #262730;
-    background-color: var(--background-primary);
-  }
+        /* Backgrounds */
+        --background-primary: #fafbff;
+        --surface-container: #ffffff;
+        --surface-container-low: #f5f7ff;
+      }
+      /* Import font */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-  /* Hide sidebar */
-  .css-1d391kg, .css-1lcbmhc, .css-1outpf7, section[data-testid="stSidebar"] {
-    display: none !important;
-  }
+      body, .main {
+        font-family: 'Arial', sans-serif;
+        color: #262730;
+        background-color: var(--background-primary);
+      }
+      /* Hide sidebar */
+      .css-1d391kg, .css-1lcbmhc, .css-1outpf7,
+      section[data-testid="stSidebar"] {display:none!important;}
 
-  /* Main header */
-  .main-header {
-    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-dark) 100%);
-    padding: 1.5rem 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: white;
-    box-shadow: 0 4px 8px var(--surface-primary-20);
-  }
-  .main-header h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-  }
-  .main-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    font-weight: 400;
-  }
+      /* Main header */
+      .main-header {background:linear-gradient(135deg, var(--primary-main), var(--primary-dark)); padding:1.5rem 2rem; border-radius:12px; margin-bottom:2rem; text-align:center; color:#fff; box-shadow:0 4px 8px var(--surface-primary-20);}  
+      .main-header h1 {font-size:2.5rem; font-weight:800; margin-bottom:0.5rem;}  
+      .main-header p  {font-size:1.1rem; opacity:0.9; font-weight:400;}
 
-  /* Material card */
-  .material-card {
-    background-color: var(--surface-container);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    border: 1px solid var(--surface-primary-10);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .material-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px var(--surface-primary-20);
-    border-color: var(--primary-main);
-    background-color: var(--surface-container-low);
-  }
+      /* Material card */
+      .material-card {background:var(--surface-container); border-radius:12px; padding:25px; margin-bottom:25px; border:1px solid var(--surface-primary-10); box-shadow:0 4px 8px rgba(0,0,0,0.05); transition:transform .3s, box-shadow .3s;}      
+      .material-card:hover {transform:translateY(-5px); box-shadow:0 8px 16px var(--surface-primary-20); border-color:var(--primary-main); background:var(--surface-container-low);}  
 
-  /* Metrics */
-  .material-metric-value {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--primary-main);
-    margin-top: 5px;
-  }
-  .material-metric-label {
-    font-size: 0.9em;
-    color: #6C757D;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+      /* Buttons */
+      .stButton > button {background:var(--primary-main); color:#fff; border-radius:50px; padding:12px 24px; font-size:16px; border:2px solid transparent; font-weight:600; transition:background .3s, transform .3s;}      
+      .stButton > button:hover  {background:var(--primary-dark); transform:scale(1.05); box-shadow:0 4px 12px var(--surface-primary-20);}  
+      .stButton > button:active {background:var(--primary-dark); border:2px solid var(--surface-primary-10);}
 
-  /* Threat levels */
-  .threat-critical { border-left: 5px solid #dc3545; background: linear-gradient(145deg, #fff5f5, #ffe6e6); }
-  .threat-high     { border-left: 5px solid #fd7e14; background: linear-gradient(145deg, #fff8f0, #ffebcc); }
-  .threat-medium   { border-left: 5px solid #ffc107; background: linear-gradient(145deg, #fffbf0, #fff3cd); }
-  .threat-low      { border-left: 5px solid #28a745; background: linear-gradient(145deg, #f8fff8, #d4edda); }
+      /* Other components... */
+      .upload-section{background:var(--surface-container); border:2px dashed var(--primary-main); border-radius:12px; padding:2rem; text-align:center; margin:1rem 0; transition:border-color .3s, background .3s;}      
+      .upload-section:hover {border-color:var(--primary-dark); background:var(--surface-primary-10);}  
 
-  /* Upload section */
-  .upload-section {
-    background-color: var(--surface-container);
-    border: 2px dashed var(--primary-main);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    margin: 1rem 0;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-  }
-  .upload-section:hover {
-    border-color: var(--primary-dark);
-    background-color: var(--surface-primary-10);
-  }
-
-  /* Buttons */
-  .stButton > button {
-    background-color: var(--primary-main);
-    color: white;
-    border-radius: 50px;
-    padding: 12px 24px;
-    font-size: 16px;
-    border: 2px solid transparent;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  .stButton > button:hover {
-    background-color: var(--primary-dark);
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px var(--surface-primary-20);
-  }
-  .stButton > button:active {
-    background-color: var(--primary-dark);
-    border: 2px solid var(--surface-primary-10);
-  }
-
-  /* Charts & sections */
-  .chart-container {
-    background-color: var(--surface-container);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 25px;
-    border: 1px solid var(--surface-primary-10);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-  }
-  .section-header {
-    color: var(--primary-main);
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--primary-main);
-  }
-
-  /* Info & success */
-  .info-card {
-    background-color: var(--surface-container);
-    border-left: 5px solid var(--primary-main);
-    padding: 1.5rem;
-    margin: 1rem 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-  .info-card:hover {
-    background-color: var(--surface-primary-10);
-    border-color: var(--primary-dark);
-  }
-  .success-message {
-    background: linear-gradient(145deg, #d4edda, #ffffff);
-    border: 2px solid #28a745;
-    border-radius: 12px;
-    padding: 1rem;
-    margin: 1rem 0;
-  }
-
-  /* Focus states */
-  .material-card:focus-within,
-  .upload-section:focus-within {
-    outline: 2px solid var(--primary-main);
-    outline-offset: 2px;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .material-card { padding: 15px; border-radius: 8px; }
-    .material-metric-value { font-size: 2em; }
-    .stButton > button { padding: 10px 20px; font-size: 14px; }
-    .main-header h1 { font-size: 2rem; }
-  }
-
-  /* Hide Streamlit UI */
-  #MainMenu, footer, header { visibility: hidden; }
-</style>
+      /* Hide Streamlit UI elements */
+      #MainMenu, footer, header {visibility:hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # --- MODEL LOADING ---
