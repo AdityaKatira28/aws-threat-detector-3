@@ -661,7 +661,7 @@ def get_risk_level_info(probability):
         return "🟢 LOW", "threat-low"
 
 # --- MAIN LAYOUT ---
-st.markdown('<div class="main-header"><h1>🛡️ AI Threat Detection and Log Analysis</h1><p>Advanced CloudTrail Security Monitoring Platform</p></div>', unsafe_allow_html=True)
+st.markdown('<div class="main-header"><h1>🛡️ AI Log Analysis</h1></div>', unsafe_allow_html=True)
 
 # --- BATCH ANALYSIS SECTION ---
 st.markdown('<h2 class="section-header">📊 Batch Log Analysis</h2>', unsafe_allow_html=True)
